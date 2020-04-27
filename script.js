@@ -2,8 +2,9 @@ const fs = require('fs');
 
 // GLOBAL VARIABLE
 let counter = 0;
-
+let enteringBasementIndex;
 fs.readFile('./input.txt', (err, data) => {
+    console.time('time');
     if (err) {
         console.log('errorrrr');
     } else {
@@ -13,8 +14,17 @@ fs.readFile('./input.txt', (err, data) => {
             } else if (data[i] == '41') {
                 counter -= 1;
             }
+            
+            // Question 2 below
+            if (counter === -1) {
+                //console.log('Entered basement at : ', i)
+                enteringBasementIndex = i;
+                break;
+            }
         }
-        console.log(counter);
+        console.timeEnd('time');
+        console.log('Entered basement at : ', enteringBasementIndex);
+        console.log('Counter: ',counter);
     }
 })
 
